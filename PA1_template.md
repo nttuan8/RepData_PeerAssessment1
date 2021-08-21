@@ -27,7 +27,7 @@ ggplot(data = step_date, aes(x=steps)) + geom_histogram()
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
+![](figure/plot1.pngunnamed-chunk-2-1.png)<!-- -->
 
 ```r
 mean_step <- mean(step_date$steps)
@@ -42,7 +42,7 @@ step_interval <- aggregate(steps~interval, data = activity, sum)
 ggplot(step_interval, aes(x=interval, y=steps)) + geom_line()
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
+![](figure/plot2.pngunnamed-chunk-3-1.png)<!-- -->
 
 ```r
 max_step <- step_interval[which.max(step_interval$steps),]$interval
@@ -93,7 +93,7 @@ ggplot(data = step_date_impute, aes(x=steps)) + geom_histogram()
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
+![](figure/plot3.pngunnamed-chunk-5-1.png)<!-- -->
 
 ```r
 mean_impute <- mean(step_date_impute$steps)
@@ -123,6 +123,6 @@ ggplot(data = activity, aes(interval, steps)) + geom_line() + facet_grid(weekend
 ## Warning: Removed 1 row(s) containing missing values (geom_path).
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
+![](figure/plot4.pngunnamed-chunk-6-1.png)<!-- -->
 
 At the weekend, the total of steps is higher.

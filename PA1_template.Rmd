@@ -15,7 +15,7 @@ activity$date <- as.Date(activity$date)
 
 
 ## What is mean total number of steps taken per day?
-```{r}
+```{r fig.path='figure/plot1.png'}
 step_date <- aggregate(steps~date, data = activity, sum)
 library(ggplot2)
 ggplot(data = step_date, aes(x=steps)) + geom_histogram()
@@ -25,7 +25,7 @@ median_step <- median(step_date$steps)
 The mean and median of the total number of steps taken per day are `r sprintf("%.2f", mean_step)` and `r sprintf("%.2f", median_step)` respectively.
 
 ## What is the average daily activity pattern?
-```{r}
+```{r fig.path='figure/plot2.png'}
 step_interval <- aggregate(steps~interval, data = activity, sum)
 ggplot(step_interval, aes(x=interval, y=steps)) + geom_line()
 
@@ -38,7 +38,7 @@ max_step <- step_interval[which.max(step_interval$steps),]$interval
 total_missing <- sum(is.na(activity$steps))
 ```
 There are `r total_missing` missing values in the data.
-```{r}
+```{r fig.path='figure/plot3.png'}
 library(dplyr)
 impute.mean <- function(x) replace(x, is.na(x), mean(x, na.rm = TRUE))
 
@@ -57,7 +57,7 @@ The missing values are imputed by the mean for that 5-minute interval. The histo
 The mean and median of the total number of steps taken per day are `r sprintf("%.2f", mean_impute)` and `r sprintf("%.2f", median_impute)` respectively.
 
 ## Are there differences in activity patterns between weekdays and weekends?
-```{r}
+```{r fig.path='figure/plot4.png'}
 activity$weekend <- 'weekend'
 activity[weekdays(activity$date) %in% c('Saturday', 'Sunday'),][['weekend']] <- 'weekday'
 names(activity)
